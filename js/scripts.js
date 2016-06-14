@@ -43,7 +43,7 @@ $(function() {
   accountOne.updateLedger();
 
   $('#deposit').click(function() {
-    if (parseInt($('#transaction-amount').val()) && parseInt($('#transaction-amount').val()) >= 0) {
+    if (parseFloat($('#transaction-amount').val()) && parseFloat($('#transaction-amount').val()) >= 0) {
       accountOne.accountTransaction( parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
       accountOne.updateLedger();
       document.getElementById("transaction-form").reset()
@@ -53,7 +53,7 @@ $(function() {
   });
 
   $('#withdrawal').click(function() {
-    if (parseInt($('#transaction-amount').val()) && parseInt($('#transaction-amount').val()) >= 0) {
+    if (parseFloat($('#transaction-amount').val()) && parseFloat($('#transaction-amount').val()) >= 0) {
       accountOne.accountTransaction( -parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
       accountOne.updateLedger();
       document.getElementById("transaction-form").reset()
