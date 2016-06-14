@@ -24,6 +24,8 @@ var accountOne = new Account("John Doe", 30000, "savings");
 
 
 $(function() {
+  // document.getElementByID("")
+
   Account.prototype.updateLedger = function() {
     $('#ledger').empty();
     var ledgerBalance = 0;
@@ -37,8 +39,14 @@ $(function() {
   accountOne.updateLedger();
 
   $('#deposit').click(function() {
-
     accountOne.accountTransaction( parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
     accountOne.updateLedger();
+    document.getElementById("transaction-form").reset()
+  });
+
+  $('#withdrawal').click(function() {
+    accountOne.accountTransaction( -parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
+    accountOne.updateLedger();
+    document.getElementById("transaction-form").reset()
   });
 });
