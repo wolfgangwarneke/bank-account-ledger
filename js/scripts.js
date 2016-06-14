@@ -12,9 +12,15 @@ Account.prototype.accountTransaction = function(amount, comment) {
   this.balance += amount;
 };
 
-
 function Transaction(amount, comment) {
   this.amount = amount;
   this.comment = comment;
   this.time = new Date();
 };
+
+var accountOne = new Account("John Doe", 30000, "savings");
+
+
+$(function() {
+  
+})
