@@ -3,6 +3,7 @@ function Account(username, initialdeposit, type) {
   this.balance = 0;
   this.accountType = type;
   this.transactionLog = [];
+
   this.accountTransaction(initialdeposit, "First deposit. Welcome!");
 };
 
@@ -10,6 +11,9 @@ Account.prototype.accountTransaction = function(amount, comment) {
   var deposit = new Transaction(amount, comment);
   this.transactionLog.push(deposit);
   this.balance += amount;
+  if (this.balance < 0 && this.transactionLog[this.transactionLog.length - 1].comment != "Overdraft fee") {
+    this.accountTransaction(-20, "Overdraft fee");
+  }
 };
 
 function Transaction(amount, comment) {
@@ -39,14 +43,22 @@ $(function() {
   accountOne.updateLedger();
 
   $('#deposit').click(function() {
-    accountOne.accountTransaction( parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
-    accountOne.updateLedger();
-    document.getElementById("transaction-form").reset()
+    if (parseInt($('#transaction-amount').val()) && parseInt($('#transaction-amount').val()) >= 0) {
+      accountOne.accountTransaction( parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
+      accountOne.updateLedger();
+      document.getElementById("transaction-form").reset()
+    } else {
+      alert("Please enter a positive number.")
+    }
   });
 
   $('#withdrawal').click(function() {
-    accountOne.accountTransaction( -parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
-    accountOne.updateLedger();
-    document.getElementById("transaction-form").reset()
+    if (parseInt($('#transaction-amount').val()) && parseInt($('#transaction-amount').val()) >= 0) {
+      accountOne.accountTransaction( -parseFloat(parseFloat($('#transaction-amount').val()).toFixed(2)), $('#transaction-comment').val() );
+      accountOne.updateLedger();
+      document.getElementById("transaction-form").reset()
+    } else {
+      alert("Please enter a positive number.")
+    }
   });
 });
