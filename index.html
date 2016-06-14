@@ -10,23 +10,29 @@
     <link rel="stylesheet" href="css/styles.css" type="text/CSS">
   </head>
   <body>
-    <form class="form" id="transaction-form">
-      <label for="transaction-amount">Amount</label>
-      <input type="number" required="true" id="transaction-amount">
-      <label for="transaction-comment">Comment</label>
-      <input type="text" id="transaction-comment">
-    </form>
+    <div class="container">
+      <form class="form" id="transaction-form">
+        <label for="transaction-amount">Amount</label>
+        <input type="number" min=0 required="true" id="transaction-amount">
+        <label for="transaction-comment">Comment</label>
+        <input type="text" id="transaction-comment">
+        <button type="button" id="deposit">Deposit</button>
+        <button type="button" id="withdrawal">Withdrawal</button>
+      </form>
 
-    <div class="table-responsive table-hover">
-      <table class="table">
-        <caption>Account Ledger</caption>
-        <tr>
-          <th>Amount</th>
-          <th>Comment</th>
-          <th>Date</th>
-          <th>Ledger Balance</th>
-        </tr>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <caption>Account Ledger</caption>
+          <tr>
+            <th>Amount</th>
+            <th>Comment</th>
+            <th>Date</th>
+            <th>Ledger Balance</th>
+          </tr>
+          <tbody id="ledger">
+          </tbody>
+        </table>
+      </div>
     </div>
 
 
